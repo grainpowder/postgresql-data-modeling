@@ -6,10 +6,6 @@ from sql_queries import *
 
 
 def process_song_file(cur, filepath):
-    """
-    method to preprocess song file data written in file located in given filepath
-    """
-
     # open song file
     df = pd.read_json(filepath, lines=True)
 
@@ -23,10 +19,6 @@ def process_song_file(cur, filepath):
 
 
 def process_log_file(cur, filepath):
-    """
-    method to preprocess log file data written in file located in given filepath
-    """
-
     # open log file
     df = pd.read_json(filepath, lines=True)
 
@@ -52,7 +44,7 @@ def process_log_file(cur, filepath):
         cur.execute(user_table_insert, row)
 
     # insert songplay records
-    for index, row in df.iterrows():
+    for _, row in df.iterrows():
         
         # get songid and artistid from song and artist tables
         cur.execute(song_select, (row.song, row.artist, row.length))
@@ -65,7 +57,6 @@ def process_log_file(cur, filepath):
 
         # insert songplay record
         songplay_data = (
-            index, 
             pd.to_datetime(row.ts * 1000000), 
             row.userId, 
             row.level, 
@@ -79,10 +70,6 @@ def process_log_file(cur, filepath):
 
 
 def process_data(cur, conn, filepath, func):
-    """
-    method to iterate files in data directory and apply one of data processing functions defined above
-    """
-
     # get all files matching extension from directory
     all_files = []
     for root, dirs, files in os.walk(filepath):
@@ -102,10 +89,6 @@ def process_data(cur, conn, filepath, func):
 
 
 def main():
-    """
-    main function to execute data processing logic defined in this module
-    """
-
     conn = psycopg2.connect("host=127.0.0.1 dbname=sparkifydb user=student password=student")
     cur = conn.cursor()
 
