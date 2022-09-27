@@ -1,6 +1,11 @@
 # Sparkify Data Modeling
 
-A startup called Sparkify wants to analyze the data they've been collecting on songs and user activity on their new music streaming app. The analytics team is particularly interested in understanding what songs users are listening to. Currently, they don't have an easy way to query their data, which resides in a directory of JSON logs on user activity on the app, as well as a directory with JSON metadata on the songs in their app. They'd like a data engineer to create a Postgres database with tables designed to optimize queries on song play analysis, whose role is to create a database schema and ETL pipeline for this analysis.
+An imaginary startup company Sparkify provides music streaming service, and has been stored data on songs and user activity in JSON file format for a long time. This disabled their data analyst and data science team to utilize this data, since information in individual file cannot be easily queried. Therefore, primary role of data engineer facing such situation can be listed as follows:
+
+1. Define relational database schemas to store raw data appropriately
+1. Extract related data field from data stored in each file
+1. Transform extracted data into required format if needed
+1. Load extracted, transformed data into intialized database
 
 ## Repository
 
